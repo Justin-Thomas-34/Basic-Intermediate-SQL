@@ -1,0 +1,8 @@
+Q. Which data type does the value “2023-12-01 14:00:00” fall under?
+
+- Text
+- Number
+- Date 
+
+Answer: Date Dates can include the date and a timestamp, or just the date without a timestamp. 
+        Dates and timestamps are technically two different data types, but practically speaking, we often treat them the same when filtering our data.
