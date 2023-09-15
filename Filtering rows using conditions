@@ -1,0 +1,159 @@
+Comparison operators
+
+Operator                Description
+=                       equal to
+!=                      not equal to
+>                       greater than
+>=                      greater than or equal to
+<                       less than
+<=                      less than or equal to
+BETWEEN                 between two numbers (inclusive!)
+
+Filtering rows using conditions (WHERE)
+
+SELECT
+	flight_number, -- commas separate each column
+	departure_city, -- we go to a new line between each column - we value readability!
+	arrival_city,
+	revenue_from_baggage 
+
+FROM ba_flights 
+
+WHERE revenue_from_baggage > 10000 --We can use any comparison operator discussed
+;
+
+
+
+Exercise
+Q. Select the flight number, departure city, and arrival city for flights that generate less or equal to 100 passengers from the British Airways flights table.
+A. 
+SELECT flight_number,
+			 departure_city,
+			 arrival_city
+       
+FROM ba_flights
+
+WHERE total_passengers <= 100 -- less than or equal to!
+;
+
+Filtering text based on a single value
+SELECT
+	flight_number,
+	airline,
+	departure_city
+	arrival_city,
+	revenue_from_baggage
+FROM 
+	ba_flights
+WHERE 
+	departure_city = 'London' -- strict equality, London and nothing else
+;
+
+
+Filtering text based on multiple values
+SELECT
+	flight_number,
+	airline,
+	departure_city
+	arrival_city,
+	revenue_from_baggage
+FROM 
+	ba_flights
+WHERE 
+	departure_city IN('London', 'Madrid')
+-- you can use NOT before IN to exclude rows that match Madrid or Tel Aviv
+-- departure_city NOT IN('London', 'Madrid') returns every row except those that match Madrid or Tel Aviv
+;
+
+Filtering text based on a pattern match
+SELECT
+	flight_number,
+	airline,
+	departure_city
+	arrival_city,
+	revenue_from_baggage
+FROM 
+	ba_flights
+WHERE 
+	departure_city LIKE '%L%'
+-- this will retrieve all rows where there is a capital L for departure_city
+-- removing the % before the L will omit the Kuala Lumpur example
+;
+
+Filtering NULL values
+SELECT
+	flight_number,
+	airline,
+	departure_city
+	arrival_city,
+	revenue_from_baggage
+FROM ba_flights
+
+WHERE airline IS NULL
+-- you can use NOT after IS to exclude rows with NULL values
+-- WHERE airline IS NOT NULL
+;
+
+Exercise
+Q. Select the flight ID, number of passengers, and baggage weight for flights that arrive in Dubai or Chicago the British Airways flights table.
+A. 
+SELECT flight_id,
+			 total_passengers,
+       baggage_weight
+
+FROM ba_flights
+
+WHERE arrival_city IN ('Dubai', 'Chicago')
+-- arrival_city = 'Dubai' OR arrival_city = 'Chicago' also works
+-- but its more typing! we value concise code
+;
+
+Filtering dates using = 
+SELECT *
+
+FROM ba_flights
+
+WHERE actual_flight_date = '2023-04-05' -- filtering with strict equality
+;
+
+Filtering dates using >=  
+SELECT *
+
+FROM ba_flights
+
+WHERE actual_flight_date >= '2023-04-05' -- filtering for dates greater than or equal to
+;
+
+-- note: other kinds of inequality operators work too
+-- strictly greater than >
+-- strictly less than <
+-- less than or equal to <=
+
+Filtering dates using BETWEEN
+SELECT *
+
+FROM ba_flights
+
+WHERE actual_flight_date BETWEEN '2023-04-05' AND '2023-05-07' -- filtering with inclusive range
+;
+
+Filtering dates using IN 
+SELECT *
+
+FROM ba_flights
+
+WHERE actual_flight_date IN ('2023-04-05', '2023-05-07') -- filtering for records matched to the data in parentheses 
+;
+
+Exercise
+Q. Select the flight number, status, and total passengers for flights that happened before 2023-05-01 from the British Airways flights table.
+A. 
+SELECT flight_number,
+			 status,
+       total_passengers
+
+FROM ba_flights
+
+WHERE actual_flight_date < '2023-05-01' -- "happened before" translates to the less than operator
+;
+
