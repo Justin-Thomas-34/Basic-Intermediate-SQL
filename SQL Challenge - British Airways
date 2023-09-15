@@ -1,0 +1,27 @@
+Question #1: 
+Select all the flight IDs for flights that have 0 total passengers, or that flew 0 distance.
+
+Hint/s
+Which columns do you want to select?
+How do you combine two conditions together in your filter if only one condition needs to be correct?
+
+Question #2: 
+Select the unique arrival cities that British Airways is flying to when departing from London
+
+Hint/s
+How do you select unique values?
+What column is used to identify the flights departure?
+
+Question #3: 
+Select the flight numbers, flight date, and departure city for flights that fly to Madrid, Lisbon, Port of Spain, or Tel Aviv
+Hint/s
+How do you filter for text columns?
+How do you filter for multiple text values in one condition?
+
+Question #4: 
+Select the flight number and departure city for flights that meet two conditions: 
+- the flight status is scheduled
+- the flights generated £0 revenue for baggage or had 0 passengers
+Hint/s
+How to best combine filters where you apply both an AND and an OR statement?
+You may want to use brackets in your filtering!
