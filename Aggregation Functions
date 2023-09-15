@@ -1,0 +1,43 @@
+In this lesson, you will learn: 
+
+- How to use aggregation functions in your query
+- How to write queries that group data and aggregate numbers based on the group 
+- How to translate business questions into a SQL query to answer the question with data
+
+
+Overview of aggregation functions
+Aggregation                      Description
+SUM(<column_name>)               calculates the sum of values
+AVG(<column_name>)               calculates the average of a set of values
+MAX(<column_name>)               gets the maximum value in a set of values
+MIN(<column_name>)               gets the minimum value in a set of values
+COUNT(<column_name>)             counts rows in a specified table or view
+COUNT(DISTINCT <column_name>)    counts the number of unique values 
+
+Applying aggregation functions in SELECT
+SELECT SUM(conversions) AS total_conversions
+
+FROM meta_revenue
+;
+
+Combining aggregation functions using arithmetic operators
+SELECT SUM(revenue)/SUM(conversions) AS revenue_per_conversion
+
+FROM meta_revenue
+;
+
+Question: Which aggregation function will summarize the unique number of arrival cities from the British Airways flights table?
+- COUNT()
+- SUM()
+- COUNT(DISTINCT )
+
+Answer
+COUNT(DISTINCT ). This will count the unique number of values that are available in the specific column within the function
+
+Question Which aggregation function will show the average number of passengers from the British Airways flights table?
+- AVG()
+- SUM()
+- MIN()
+
+Answer
+AVG(). This is take all the numbers available across the rows and calculate the average based on all the number of passengers.
