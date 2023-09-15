@@ -1,0 +1,95 @@
+In this lesson, you will learn: 
+
+- How to write queries using multiple filter conditions
+- The difference between combining filters using AND and OR
+- How to write queries that prioritize filter conditions over others using brackets
+
+
+Combining three filter conditions using AND
+SELECT *
+
+FROM ba_flights
+
+WHERE total_passengers > 100 -- we need all three of these conditions to be true
+			AND departure_city = 'London' -- note how we format the query for readability
+			AND arrival_city = 'Madrid'
+;
+
+Combining the IN operator and excluding NULL values
+SELECT *
+
+FROM ba_flights
+
+WHERE airline IS NOT NULL -- queries sometimes have a large number of conditions
+			AND departure_city = 'London' -- neat indenting makes it easy to understand even complicated queries
+			AND arrival_city IN('Lisbon', 'Madrid')
+;
+
+Exercise
+Q. Select all rows that depart from London or Madrid, and the flight status is not equal to “Cancelled” from the British Airways flights table.
+A. 
+SELECT *
+
+FROM ba_flights
+
+WHERE departure_city IN ('Madrid', 'London')
+			AND status != 'Cancelled' -- not cancelled can also be written NOT (status = 'Cancelled')
+;
+
+Combining two filter conditions using OR
+SELECT
+	flight_number,
+	airline,
+	departure_city,
+	arrival_city,
+	revenue_from_baggage
+
+FROM ba_flights 
+
+WHERE departure_city = 'Aberdeen' -- flights leaving from or arrive at Aberdeen
+			OR arrival_city = 'Aberdeen'
+;
+
+Exercise
+Q. Select all columns for flights with more than 200 passengers or more than 3,000 in baggage weight from the British Airways flights table.
+A. 
+SELECT *
+       
+FROM ba_flights
+
+WHERE total_passengers > 200
+			OR baggage_weight > 3000
+;
+
+Combining an OR statement with a third condition
+-- inspect the output of this query and visually fact check a few rows
+SELECT flight_number,
+			 airline,
+			 departure_city,
+			 arrival_city
+
+FROM ba_flights
+-- we want any record that
+-- is an aberdeen flight (coming or going)
+-- AND has more than 10,000 baggage revenue
+WHERE (departure_city = 'Aberdeen' 
+			OR arrival_city = 'Aberbeen')
+			AND revenue_from_baggage > 10000
+;
+
+Question: What will brackets do when you place them around a combination of two filter conditions combined with AND or OR? 
+e.g. WHERE (condition1 AND condition2) OR (condition3 AND condition4) AND condition5
+
+Answer
+Brackets prioritize everything within the brackets over the code outside the brackets. 
+This means the combination of filters within the brackets will run first and the remaining filter conditions will run after. 
+
+
+
+
+Lesson Summary
+Here is a quick recap of key points to take away from this lesson: 
+
+AND combines filter conditions where both must be met for the rows to show in the query result.
+OR combines filter conditions where only one condition needs to be met for the rows to show in the query result.
+Placing brackets around the conditions combined by the AND or OR clause prioritizes the conditions within the brackets first.
