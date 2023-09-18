@@ -1,0 +1,69 @@
+Ordering by total revenue
+SELECT client_id,
+			 SUM(revenue) AS total_revenue
+
+FROM meta_revenue
+
+WHERE years = 2022
+
+GROUP BY client_id
+
+ORDER BY total_revenue DESC --change to ASC to show the smallest number first
+;
+
+Limiting results to only 10 rows
+
+SELECT client_id,
+			 SUM(revenue) AS total_revenue
+
+FROM meta_revenue
+
+WHERE years = 2022
+
+GROUP BY client_id
+
+ORDER BY total_revenue DESC
+
+LIMIT 10 --only shows the first 10 rows
+;
+
+-- pro-tip if you are working with a table for the first time
+-- select * from new_table limit 5; is a great way to get familiar with the new table
+
+Prioritizing what to view first - ASC versus DESC 
+When using ORDER BY, we can decide which rows we want to see as the top results of the query: 
+
+ASC (ascending)
+Numbers: the smallest number will be shown first.
+Dates: the earliest date (furthest back in history) will be shown first.
+Text: the text will be ordered from A-Z
+DESC (descending)
+Numbers: the largest number will be shown first.
+Dates: the latest date will be shown first.
+Text: the text will be ordered from Z-A
+
+Question
+How should we sort the table if we want to see the flights with the highest number of passengers first?
+- ASC
+- DESC
+
+Answer
+DESC. This will prioritize the largest number first.
+
+Exercise
+What is the geo_user that received the highest total number of clicks from Instagram in 2018? Only display the top 5 countries in your query result. 
+
+SELECT geo_user,
+			 SUM(clicks) AS total_clicks
+
+FROM meta_revenue
+
+WHERE years = 2018
+			AND parent_company = 'Instagram'
+
+GROUP BY geo_user
+
+ORDER BY total_clicks DESC -- if you don't specify DESC, you'll get ASC by default
+
+LIMIT 5
+;
