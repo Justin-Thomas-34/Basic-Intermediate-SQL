@@ -5,6 +5,15 @@ Hint/s
 Which columns do you want to select?
 How do you combine two conditions together in your filter if only one condition needs to be correct?
 
+-- we need the flight_id column from ba_flights
+SELECT flight_id
+
+FROM ba_flights
+
+WHERE total_passengers = 0 -- "O total passengers or distance 0"
+			OR distance_flown = 0 -- need to use the OR operator (either/both condition can be true)
+;
+
 Question #2: 
 Select the unique arrival cities that British Airways is flying to when departing from London
 
@@ -12,11 +21,30 @@ Hint/s
 How do you select unique values?
 What column is used to identify the flights departure?
 
+SELECT DISTINCT arrival_city -- "unique arrival cities" -> we need to use the DISTINCT command
+
+FROM ba_flights
+
+WHERE departure_city = 'London' -- "departing from london"
+;
+
 Question #3: 
 Select the flight numbers, flight date, and departure city for flights that fly to Madrid, Lisbon, Port of Spain, or Tel Aviv
 Hint/s
 How do you filter for text columns?
 How do you filter for multiple text values in one condition?
+
+-- we need to filter for a bunch of cities
+-- its way easier to use the IN operator than to string together a bunch of OR statements
+SELECT flight_number, 
+			 actual_flight_date, 
+       departure_city
+
+FROM ba_flights
+
+WHERE arrival_city IN ('Madrid', 'Lisbon', 'Port of Spain', 'Tel Aviv')
+;
+
 
 Question #4: 
 Select the flight number and departure city for flights that meet two conditions: 
@@ -25,3 +53,12 @@ Select the flight number and departure city for flights that meet two conditions
 Hint/s
 How to best combine filters where you apply both an AND and an OR statement?
 You may want to use brackets in your filtering!
+
+SELECT flight_number,
+			 departure_city
+
+FROM ba_flights
+
+WHERE status = 'Scheduled' -- status scheduled has to be true in all cases
+			AND (revenue_from_baggage = 0 OR total_passengers = 0) -- either or both can be true in this case
+;
