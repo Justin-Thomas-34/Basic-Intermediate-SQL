@@ -1,0 +1,38 @@
+In this lesson, you will learn: 
+- How to write queries that filter based on aggregated values
+- How to sort your query result
+- How to limit the number of rows you will receive in your query result
+
+Filtering aggregated data using HAVING
+SELECT sales_team,
+			 SUM(impressions) AS total_impressions
+
+FROM meta_revenue
+
+WHERE years = 2022
+
+GROUP BY sales_team
+-- meta_revenue gets aggregated into a summary table we can further filter down!
+HAVING SUM(impressions) > 27500000
+;
+
+
+Rule of Thumb: Only apply HAVING if you need to filter aggregated data, otherwise use WHERE
+
+
+Exercise
+How much revenue did Instagram and Facebook generate per year separately? Only include years where Instagram and Facebook generated above 500 million revenue in a year.
+
+Note: the revenue columns is already shown in millions 
+
+SELECT years, 
+			 parent_company, 
+       SUM(revenue) AS total_revenue 
+       
+FROM meta_revenue
+
+GROUP BY years, 
+			   parent_company
+-- any time you need to filter on an aggregated number - you'll need the HAVING clause
+HAVING SUM(revenue) > 500
+;
