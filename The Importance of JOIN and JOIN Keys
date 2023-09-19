@@ -47,3 +47,16 @@ Be aware: INNER JOIN restricts your query results to only rows where the join ke
 
 Exercise
 Which products are distributed by which distribution centers? Write a query that shows the product name, product ID, and distribution center name for each product.
+
+Solution
+SELECT products.product_name,
+			 products.product_id,
+			 distribution_centers.name AS distribution_center
+
+FROM 
+	products
+INNER JOIN 
+	distribution_centers 
+ON 
+	products.distribution_center_id = distribution_centers.distribution_center_id
+;
