@@ -1,0 +1,49 @@
+In this lesson, you will learn: 
+
+- Why joins are critical in SQL and how join keys allow tables to be connected
+- The difference between available join types
+- How to write queries that combine columns from two tables using JOINs
+
+Primary and foreign keys
+Tables in a database are structured with primary keys and foreign keys that can be used to combine tables. The join keys can be described in the following way:
+
+
+The primary key is a column that is the unique identifier of a specific table. A unique identifier means that one value of the column represents one unique row in the table.
+The foreign key is a column that is not the unique identifier of the table it is stored in, but it is a unique identifier of another table. This means a foreign key value can appear more than once in the table.
+
+Why is the ability to work with joins so important in SQL?
+Joins allow you to combine columns from multiple tables. This is essential because data is almost never stored in a single table, so you’ll be combining data from multiple tables on a regular basis in a Data job.
+Syntax of joins
+SELECT 
+	<table_1.column_1> ,
+	<table_1.column_2> 
+
+
+FROM	
+	<table_1>
+_ JOIN -- _ can be replaced with INNER, or any of the other JOIN types (LEFT, RIGHT, FULL)
+	<table_2> 
+ON <table_1.join_key> = <table_2.join_key>
+
+;
+
+Combing two tables with an INNER JOIN 
+SELECT 
+	order_items.order_id, -- specifying table names to remove ambiguity about which table a column belongs to
+	order_items.created_at,
+	order_items.shipped_at,
+	order_items.product_id,
+	products.product_name
+
+FROM 
+	order_items
+INNER JOIN -- we want an INNER JOIN returning records where product_id is in both order_items and products
+	products 
+ON order_items.product_id = products.product_id -- we use the ON keyword to specify join keys
+;
+
+Be aware: INNER JOIN restricts your query results to only rows where the join keys of the tables match. All rows that have non-matching join keys will not show in your result, and you will not receive any error message about this!
+
+
+Exercise
+Which products are distributed by which distribution centers? Write a query that shows the product name, product ID, and distribution center name for each product.
