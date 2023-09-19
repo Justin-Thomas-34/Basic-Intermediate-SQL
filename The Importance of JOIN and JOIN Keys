@@ -60,3 +60,74 @@ INNER JOIN
 ON 
 	products.distribution_center_id = distribution_centers.distribution_center_id
 ;
+
+Combining two tables using LEFT JOIN
+SELECT 
+	order_items.order_id,
+	order_items.created_at,
+	order_items.shipped_at,
+	order_items.product_id,
+	products.product_name
+
+FROM 
+	order_items
+LEFT JOIN -- this returns ALL records from order_items, even if they don't exist in products!
+	products 
+ON order_items.product_id = products.product_id
+;
+
+Combining two tables using FULL JOIN
+
+SELECT 
+	order_items.order_id,
+	order_items.created_at,
+	order_items.shipped_at,
+	order_items.product_id,
+	products.product_name
+
+FROM 
+	order_items
+FULL JOIN -- FULL OUTER JOIN gives the same result as FULL JOIN
+	products 
+ON order_items.product_id = products.product_id
+;
+
+Exercise
+How many products are distributed by each distribution center? Ensure to include the name of all distribution centers even if they don’t distribute any products.
+SELECT 
+	distribution_centers.name AS distribution_center,
+	COUNT(products.product_id) AS total_products
+
+FROM 
+	distribution_centers
+LEFT JOIN 
+	products 
+ON 
+	products.distribution_center_id = distribution_centers.distribution_center_id
+     
+GROUP BY 
+	distribution_centers.name
+;
+
+How many products have a distribution center ID not available in the table distribution_centers?
+SELECT 
+	COUNT(products.product_id) AS total_products
+
+FROM 
+	products
+LEFT JOIN 
+	distribution_centers 
+ON 
+	products.distribution_center_id = distribution_centers.distribution_center_id
+
+WHERE distribution_centers.distribution_center_id IS NULL
+;
+
+--FULL JOIN also provides the correct answers
+
+Here is a quick recap of key points to take away from this lesson: 
+
+
+Joins allow us to connect tables within a database.
+INNER JOIN combines data using join keys. If the join key does not find a match between the tables, the rows will not be shown in the query result.
+OUTER JOIN is a less restrictive join type. If the join key does not find a match between the tables, the rows will still show in the query result, but the columns will show NULL values for the join keys that did not match.
