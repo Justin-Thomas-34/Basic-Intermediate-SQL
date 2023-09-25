@@ -62,3 +62,57 @@ FROM ba_flights
 WHERE status = 'Scheduled' -- status scheduled has to be true in all cases
 			AND (revenue_from_baggage = 0 OR total_passengers = 0) -- either or both can be true in this case
 ;
+
+Question #5: 
+What are the unique arrival cities that start with the capital letter "L"
+Hint/s
+How do you select unique values?
+How do you filter text based on a pattern?
+
+Solution
+Copy
+SELECT DISTINCT arrival_city
+
+FROM ba_flights
+
+WHERE arrival_city LIKE 'L%'
+;
+
+Question #6: 
+Select all flights that are scheduled and depart between April 1 and April 30 2023.
+Hint/s
+How do you select all columns?
+How do you filter for two conditions when both conditions need to be correct?
+
+Solution
+Copy
+SELECT *
+
+FROM ba_flights
+
+WHERE status = 'Scheduled'
+			AND actual_flight_date BETWEEN '2023-04-01' AND '2023-04-30'
+;
+
+Question #7: 
+Select the flight numbers, departure city, and baggage weight for flights that are scheduled to fly to Manila, Bangkok, Jakarta, or Muscat 
+and revenue from baggage less than or equal to £7450
+
+Hint/s
+What are the correct filters that need to applied?
+How do you combine all these filters together in there WHERE statement?
+
+Solution
+Copy
+SELECT flight_number,
+			 departure_city,
+       baggage_weight
+
+FROM ba_flights
+
+WHERE status = 'Scheduled'
+			AND revenue_from_baggage <= 7450
+			AND arrival_city IN ('Manila', 'Bangkok', 'Jakarta', 'Muscat')
+;
+
+
