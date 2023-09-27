@@ -1,2 +1,49 @@
 Question #1: 
 What is the number of order items by each business unit (Nike Official and Nike Vintage)?
+
+Hint/s
+How do we combine data together from two separate data sources?
+How can we assign a text to a column?
+
+Solution
+SELECT 'Nike Official' AS business_unit,
+			 COUNT(DISTINCT order_item_id) AS num_items
+       
+FROM order_items
+
+UNION ALL
+
+SELECT 'Nike Vintage' AS business_unit,
+			 COUNT(DISTINCT order_item_id) AS num_items
+       
+FROM order_items_vintage
+
+Question #2: 
+What is the number of order items sold with a discount (sales price being smaller than retail price) by each business unit (Nike Official and Nike Vintage)? What is the total revenue generated from these items?
+
+Hint/s
+Which columns are needed in our query results?
+How do you combine two data sources with the same number of columns into a single query result?
+
+Solution
+
+SELECT 'Nike Official' AS business_unit,
+			 COUNT(DISTINCT order_items.order_item_id) AS num_items,
+       SUM(order_items.sale_price) AS total_revenue
+       
+FROM order_items
+		 LEFT JOIN products ON order_items.product_id = products.product_id
+
+WHERE order_items.sale_price < products.retail_price
+
+UNION ALL
+
+SELECT 'Nike Vintage' AS business_unit,
+			 COUNT(DISTINCT order_items_vintage.order_item_id) AS num_items,
+       SUM(order_items_vintage.sale_price) AS total_revenue
+       
+FROM order_items_vintage
+		 LEFT JOIN products ON order_items_vintage.product_id = products.product_id
+
+WHERE order_items_vintage.sale_price < products.retail_price
+
