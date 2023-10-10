@@ -14,3 +14,17 @@ Some of the benefits of working with big data using SQL are:
 
 # Answer
 Companies have data stored in many tables with millions or billions of rows. Tools like Excel / Google Sheets cannot handle these amounts of data, but SQL is built for it.
+
+# What is a table?
+SQL is a programming language that works with data stored in tables. A table is a combination of rows and columns where rows represent individual items and columns represent different attributes of that item. 
+However, companies never capture information in a single table (likely thousands of tables) because there are many different topics companies collect information about. All these tables need to be organized and stored together in a database.
+
+ # What is a schema and a database?
+ Databases allow companies to store and structure all their data in a single place. These tables look and operate in the same way as how a table works in Excel or Google Sheets!
+ You can think of a database as a computer. A computer stores files, but all these files need to be organized somehow. Computers store files in folders that are called schemas in the database. The files for the database are the tables that capture all data from the company.
+Since the data is stored in many different tables, which can often reach millions or billions of rows, we need a tool to combine and process all this data from different tables effectively. Luckily, SQL allows gives us that superpower!
+
+# Question: Can multiple tables be stored in a schema?
+
+# Answer
+Yes. Similarly to folders on your computer, you can store many tables in a single folder. Tables are closely related to each other and often are stored in the same folder to make sure the users have all the data in one place.
