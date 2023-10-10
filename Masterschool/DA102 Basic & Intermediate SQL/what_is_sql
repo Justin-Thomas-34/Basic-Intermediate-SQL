@@ -1,0 +1,16 @@
+# What is SQL, and why is it important?
+SQL (short for “Structured Query Language”) allows you to work with large amounts of data in an automated and scalable way.
+
+# Benefits of SQL
+Companies store millions or billions of records in tables and databases. SQL can process these quantities of data in seconds, which is why it is essential for companies that work with big data. 
+
+Some of the benefits of working with big data using SQL are:
+
+1. You can store and process big data securely.
+2. You can automate refreshing and cleaning data before storing it in tables.
+3. You can perform advanced data manipulations to combine and structure the data in the required format.
+
+# Question: What is the key reason why working with data in SQL is critical in companies?
+
+# Answer
+Companies have data stored in many tables with millions or billions of rows. Tools like Excel / Google Sheets cannot handle these amounts of data, but SQL is built for it.
